@@ -22,13 +22,16 @@ def all_houses(filename):
 
     #iterate through each line in the file
     for line in file:
+      #create a list of the cohort member's details
+      cohort_member_info = line.split("|")
       #find the house on each line
-      house = line[2]
+      house = cohort_member_info[2]
       #add the house to the set 
-      houses.add(house)
+      if house != '':
+        houses.add(house)
 
     file.close()
-    
+
     return houses
 
 
