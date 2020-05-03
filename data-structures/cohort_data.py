@@ -62,27 +62,37 @@ def students_by_cohort(filename, cohort='All'):
     Return:
       - list[list]: a list of lists
     """
-
+    #Make a list where the student names will go
     students = []
 
+    #open the cohort data file
     file = open(filename)
 
+    #iterate through each line in the file
     for line in file: 
+        #strip any extra spaces on the right
         line = line.rstrip()
+        #split up line into a string of all the student details
         student_details = line.split("|")
-        name = student_details[0]+" "+student_details[1]
-        cohort_name = student_details[4]
+        #find the student's name
+        first_name, last_name, house, advisor, cohort_name = student_details
 
+        name = first_name+" "+last_name
+
+        #if no cohort specified then add every student's name to the list. 
+        #Exclude instructors and ghosts
         if cohort == "All":
+
             if cohort_name == "I" or cohort_name == "G":
                 continue
 
             else: 
                 students.append(name)
 
+        #if cohort specified, add the name of every student in that cohort
         if cohort_name == cohort:
             students.append(name)
-
+    #return the names in alphabetical order
     return sorted(students)
 
 
