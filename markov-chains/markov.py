@@ -12,7 +12,7 @@ def open_and_read_file(file_path):
 
     # your code goes here
 
-    return "Contents of your file as one long string"
+    return open(file_path).read()
 
 
 def make_chains(text_string):
