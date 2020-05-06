@@ -3,7 +3,7 @@
 from random import choice
 
 
-def open_and_read_file(file_path):
+def open_and_read_file(input_path):
     """Take file path as string; return text as string.
 
     Takes a string that is a file path, opens the file, and turns
@@ -11,8 +11,8 @@ def open_and_read_file(file_path):
     """
 
     # your code goes here
-
-    return open(file_path).read()
+    contents = open(input_path).read()
+    return contents
 
 
 def make_chains(text_string):
@@ -42,8 +42,15 @@ def make_chains(text_string):
 
     chains = {}
 
-    # your code goes here
+    words = text_string.split()
+    
+    for i in range(len(words)-2):
+        word_pair = (words[i], words[i+1])
+        next_word = words[i+2]
+        chains[word_pair] = chains.get(word_pair, [])
+        chains[word_pair].append(next_word)
 
+    print(chains)
     return chains
 
 
